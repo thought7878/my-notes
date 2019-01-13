@@ -1,6 +1,7 @@
 # 学习 git 的最少必要知识
 
-1. why&what git/github
+[1. why&what git/github](./git/1_why&what/main.md)
+
 1. 本地安装 git
 1. 创建仓库
 1. 删除仓库
