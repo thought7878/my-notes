@@ -29,7 +29,7 @@ modemon 启动后，所在的终端中，可以看到 Mongo Connected 信息。
 
 ## 构建 model
 
-api/models/post.js
+- 代码：
 
 ```js
 const mongoose = require('mongoose')
