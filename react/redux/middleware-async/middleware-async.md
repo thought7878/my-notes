@@ -289,3 +289,7 @@ export default function promiseMiddleware({ dispatch }) {
 ```
 
 从上面代码可以看出，如果 Action 本身是一个 Promise，它 resolve 以后的值应该是一个 Action 对象，会被 dispatch 方法送出（action.then(dispatch)），但 reject 以后不会有任何动作；如果 Action 对象的 payload 属性是一个 Promise 对象，那么无论 resolve 和 reject，dispatch 方法都会发出 Action。
+
+## 参考
+
+[参考这篇文章](http://www.ruanyifeng.com/blog/2016/09/redux_tutorial_part_two_async_operations.html)
