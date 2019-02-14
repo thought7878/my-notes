@@ -178,11 +178,13 @@ const total = actions.reduce(reducer, 0) // 3
 
 ### action
 
+#### 含义
+
 action 是新数据，用户行为（或程序行为）产生的新数据。
 
 State 的变化，会导致 View 的变化。但是，用户接触不到 State，只能接触到 View。所以，State 的变化必须是 View 导致的。Action 就是 View 发出的通知，表示 State 应该要发生变化了。
 
-- 语法上，action 是个对象
+#### 语法上，action 是个对象
 
 Action 是一个对象。其中的 type 属性是必须的，表示 Action 的名称。其他属性可以自由设置，社区有一个规范可以参考。
 
@@ -197,7 +199,7 @@ const action = {
 
 可以这样理解，Action 描述当前发生的事情。改变 State 的唯一办法，就是使用 Action。它会运送数据到 Store。
 
-### action creator
+#### action creator
 
 View 要发送多少种消息，就会有多少种 Action。如果都手写，会很麻烦。可以定义一个函数来生成 Action，这个函数就叫 Action Creator。
 
@@ -315,7 +317,9 @@ const chatReducer = (state = defaultState, action = {}) => {
 
 上面代码中，Reducer 函数被拆成了三个小函数，每一个负责生成对应的属性。
 
-这样一拆，Reducer 就易读易写多了。而且，这种拆分与 React 应用的结构相吻合：一个 React 根组件由很多子组件构成。这就是说，子组件与子 Reducer 完全可以对应。
+这样一拆，Reducer 就易读易写多了。而且，这种拆分与 React 应用的结构相吻合：一个 React 根组件由很多子组件构成。这就是说，**子组件与子 Reducer 完全可以对应**。
+
+### combineReducers
 
 Redux 提供了一个 combineReducers 方法，用于 Reducer 的拆分。你只要定义各个子 Reducer 函数，然后用这个方法，将它们合成一个大的 Reducer。
 
@@ -332,6 +336,8 @@ export default todoApp
 ```
 
 上面的代码通过 combineReducers 方法将三个子 Reducer 合并成一个大的函数。
+
+#### State 的属性名与子 Reducer 同名
 
 这种写法有一个前提，就是 State 的属性名必须与子 Reducer 同名。如果不同名，就要采用下面的写法。
 
@@ -354,7 +360,7 @@ function reducer(state = {}, action) {
 
 总之，combineReducers()做的就是产生一个整体的 Reducer 函数。该函数根据 State 的 key 去执行相应的子 Reducer，并将返回结果合并成一个大的 State 对象。
 
-下面是 combineReducer 的简单实现。
+#### 下面是 combineReducer 的简单实现
 
 ```js
 const combineReducers = reducers => {
