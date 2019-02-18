@@ -4,7 +4,7 @@
 
 但是，一个关键问题没有解决：异步操作怎么办？Action 发出以后，Reducer 立即算出 State，这叫做**同步/同步任务/同步操作**；Action 发出以后，过一段时间再执行 Reducer，这就是**异步**。
 
-怎么才能 Reducer 在异步操作结束后自动执行呢？这就要用到新的工具：中间件（middleware）。
+**怎么才能 Reducer 在异步操作结束后自动执行呢？这就要用到新的工具：中间件（middleware）。**
 
 ## 中间件是什么
 
@@ -133,12 +133,16 @@ let state = {
 }
 ```
 
-上面代码中，State 的属性 isFetching 表示是否在抓取数据。didInvalidate 表示数据是否过时，lastUpdated 表示上一次更新时间。
+上面代码中，
 
-现在，整个异步操作的思路就很清楚了：
+- State 的属性 isFetching 表示是否在抓取数据。
+- didInvalidate 表示数据是否过时。
+- lastUpdated 表示上一次更新时间。
 
-- 操作开始时，送出一个 Action，触发 State 更新为"正在操作"状态，View 重新渲染
-- 操作结束后，再送出一个 Action，触发 State 更新为"操作结束"状态，View 再一次重新渲染
+现在，**整个异步操作的思路**就很清楚了：
+
+- 操作开始时，送出一个 Action，触发 State 更新为"正在操作"状态，View 重新渲染，显示“正在加载”
+- 操作结束后，再送出一个 Action，触发 State 更新，"操作结束"状态和其他新数据状态，View 再一次重新渲染
 
 ## redux-thunk 中间件---异步操作的解决方案
 
@@ -182,7 +186,7 @@ store.dispatch(fetchPosts('reactjs')).then(() =>
 );
 ```
 
-- 上面代码中，fetchPosts 是一个 Action Creator（动作生成器），返回一个函数。
+- 上面代码中，fetchPosts 是一个 Action Creator（动作生成器），**返回一个函数**。
 - 这个函数执行后，先发出一个 Action（requestPosts(postTitle)）。
 - 然后进行异步操作。
 - 拿到结果后，先将结果转成 JSON 格式。

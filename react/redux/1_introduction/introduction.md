@@ -270,6 +270,8 @@ const createStore = reducer => {
 
 ## reducer 的拆分
 
+### 为什么拆分
+
 为了开发维护方便。
 Reducer 函数负责生成 State。由于整个应用只有一个 State 对象，包含所有数据，对于大型应用来说，这个 State 必然十分庞大，导致 Reducer 函数也十分庞大。
 
@@ -303,7 +305,7 @@ const chatReducer = (state = defaultState, action = {}) => {
 - CHANGE_STATUS：statusMessage 属性
 - CHANGE_USERNAME：userName 属性
 
-这三个属性之间没有联系，这提示我们可以把 Reducer 函数拆分。不同的函数负责处理不同属性，最终把它们合并成一个大的 Reducer 即可。
+这三个属性之间没有联系，**这提示我们可以把 Reducer 函数拆分。不同的函数负责处理不同属性，最终把它们合并成一个大的 Reducer 即可。**
 
 ```js
 const chatReducer = (state = defaultState, action = {}) => {
@@ -339,7 +341,7 @@ export default todoApp
 
 #### State 的属性名与子 Reducer 同名
 
-这种写法有一个前提，就是 State 的属性名必须与子 Reducer 同名。如果不同名，就要采用下面的写法。
+这种写法有一个前提，就是 State 的属性名必须与子 Reducer 的属性名 同名。如果不同名，就要采用下面的写法。
 
 ```js
 const reducer = combineReducers({
