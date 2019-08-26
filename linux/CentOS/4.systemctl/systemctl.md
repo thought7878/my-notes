@@ -1,6 +1,6 @@
 # 4.systemctl：Linux 服务管理
 
-## systemd/systemctl
+# systemd/systemctl
 
 ### systemd
 
@@ -10,7 +10,7 @@ systemd 这个东西是很多 linux 系统的一种管理方法。比如 CentOS�
 
 `systemctl` 这个工具提供了一些方法可以让我们去控制 systemd 这个系统。比如用它去启动服务，停止服务等等。
 
-## units
+# units
 
 systemd 可以管理的东西叫 `units` ，中文可以翻译成单元，单元就是 systemd 可以管理的一些资源。
 
@@ -37,3 +37,51 @@ systemd 可以管理的东西叫 `units` ，中文可以翻译成单元，单元
 ```bash
 systemctl list-units
 ```
+
+#### 返回的内容分成了几栏：
+
+- UNIT 就是单元的名字
+
+注意它们都有一个特别的后缀，.device ，.mount，.service 等等。
+
+- LOAD 这栏表示这个单元是不是被加载了
+
+也就是 systemd 是不是正确的载入了单元的配置文件，因为我们执行的命令就是显示所有加载的单元，所以这栏内容都会是 loaded。
+
+- ACTIVE 这栏内容表示单元的状态
+
+一般我们可以使用它来判断这个单元是不是启动了，active 表示启动，inactive 表示没启动。
+
+- SUB 这栏是更底层的状态
+
+它会显示更详细的关于单元状态的信息，不同类型的单元，它的 SUB 这栏内容会有一些不一样。比如这个 .device，设备类型的单元，它的 SUB 这栏内容显示 plugged ，应该就表示这个设备正常接入了，下面的这个 .mount ，挂载类型的单元，显示 mounted ，表示正常挂载。这个 service，服务类型的单元，显示 running ，表示这个服务正常的运行了。
+
+- DESCRIPTION 这栏内容是关于这个单元的一个简介
+
+现在我们执行的这个命令显示的就是 systemd 已经加载的一些单元。
+
+### 查看系统里面全部的可以使用的单元文件
+
+可以使用这个命令：
+
+```bash
+systemctl list-unit-files
+```
+
+- 只想查看服务类型的单元：
+
+```bash
+systemctl list-unit-files --type service
+```
+
+# 管理服务
+
+## 查看服务状态
+
+## 启动与停止服务
+
+## 启用与禁用服务
+
+## 重启或重新载入服务
+
+## 不让服务启动
