@@ -151,7 +151,7 @@ sudo systemctl disable serviceName
 
 ### 重新载入服务
 
-不完全停止服务，就可以让服务的配置生效。
+不停止服务，就可以让服务的配置生效。
 
 ```bash
 sudo systemctl reload serviceName
