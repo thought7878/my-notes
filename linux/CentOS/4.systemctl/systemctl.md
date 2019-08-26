@@ -78,10 +78,103 @@ systemctl list-unit-files --type service
 
 ## 查看服务状态
 
+### 查看关于服务的更详细的状态(\*)
+
+- basic
+
+```bash
+systemctl status serviceName
+```
+
+- 获得更详细的信息
+
+```bash
+sudo systemctl status serviceName
+```
+
+- 显示全部的信息
+
+```bash
+sudo systemctl status serviceName -l
+```
+
+### 查看服务是不是在运行中
+
+```bash
+systemctl is-active serviceName
+
+```
+
+表示要查看单元的状态是不是在运行中，后面加上要查看的单元的名字。平时在使用 systemctl 的时候可以不需要指定单元的后缀。
+
+返回的是 active，表示这个服务正在运行。返回的是 unknown，意思是这个服务没有启动。
+
+### 查看服务是不是开机自动启动
+
+```bash
+systemctl is-enabled serviceName
+```
+
+服务是不是开机自动启动，后面加上要查看的服务。
+
+返回的是 enabled，表示这个服务会开机自启动。返回的都是 disabled，表示这个服务不会开机自启动。
+
 ## 启动与停止服务
 
-## 启用与禁用服务
+### 启动服务
+
+```bash
+(sudo) systemctl start serviceName
+```
+
+### 停止服务
+
+```bash
+(sudo) systemctl stop serviceName
+```
+
+## 启用与禁用自启动
+
+### 启用开机自启动
+
+```bash
+sudo systemctl enable serviceName
+```
+
+### 禁用开机自启动
+
+```bash
+sudo systemctl disable serviceName
+```
 
 ## 重启或重新载入服务
 
+### 重新载入服务
+
+不完全停止服务，就可以让服务的配置生效。
+
+```bash
+sudo systemctl reload serviceName
+```
+
+### 重启服务
+
+完全停止服务，再重新启动。
+
+```bash
+sudo systemctl restart serviceName
+```
+
 ## 不让服务启动
+
+既不能开机自启动，也不能手工启动。
+
+```bash
+sudo systemctl mask serviceName
+```
+
+- 恢复
+
+```bash
+sudo systemctl unmask serviceName
+```
