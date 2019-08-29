@@ -154,6 +154,8 @@ iptables --list-rules
 iptables -S
 ```
 
+### 修改
+
 #### 改变 chain 默认 policy
 
 比如我们改变 FORWARD 这个 Chain 的默认的 policy。
@@ -166,9 +168,9 @@ iptables -P FORWARD DROP
 - FORWARD，是 Chain 的名字
 - DROP
 
-### 禁止访问
+### 增加（追加/插入）
 
-#### 禁止指定来源（IP）的访问
+#### 追加：禁止指定来源（IP）的访问
 
 ```bash
 sudo iptables -A INPUT -s 192.168.33.161 -j DROP
@@ -181,7 +183,7 @@ sudo iptables -A INPUT -s 192.168.33.161 -j DROP
 
 这条规则的意思就是，扔掉来自 192.168.33.161 这个 IP 地址发送过来的所有的数据。
 
-#### 禁止指定来源访问指定协议的端口号
+#### 追加：禁止指定来源访问指定协议的端口号
 
 ```bash
 sudo iptables -A INPUT -s 192.168.33.0/24 -p tcp --dport 80 -j DROP
