@@ -30,7 +30,7 @@ iptables 是一种用在 Linux 操作系统上的防火墙。你可以用它去�
 
 Chain 有点像是防火墙规则的分组，不过要注意每个 Chain 里的规则的顺序很重要。
 
-### 三种 Chain
+### 三种默认 Chain
 
 我们可以根据需求自己去创建 Chain ，默认有三个：
 
@@ -158,7 +158,11 @@ iptables -S
 
 #### 改变 chain 默认 policy
 
-比如我们改变 FORWARD 这个 Chain 的默认的 policy。
+- 默认的 policy
+
+也就是如果一个数据包不符合所有规则里的描述就会执行这个默认的 Policy 指定的动作。
+
+- 比如我们改变 FORWARD 这个 Chain 的默认的 policy。
 
 ```bash
 iptables -P FORWARD DROP
@@ -176,7 +180,7 @@ iptables -P FORWARD DROP
 sudo iptables -A INPUT -s 192.168.33.161 -j DROP
 ```
 
-- -A 就是 append ，追加的意思
+- -A 就是 append ，追加的意思，添加到现有规则的底部。
 - INPUT 表示规则应用的 Chain， INPUT 就是进入到服务器的数据
 - -s ，表示 source ，用它指定一下数据包的来源，后面的 ip 就是数据包的来源
 - -j 表示 jump，后面是要执行的动作
@@ -194,3 +198,57 @@ sudo iptables -A INPUT -s 192.168.33.0/24 -p tcp --dport 80 -j DROP
 - --dport ，它表示 destination-port，目标端口，这里设置成 80。
 
 这条规则的意思就是，禁止 192.168.66.1 到 192.168.66.254 这些 IP 地址使用 tcp 协议在 80 端口传输数据。
+
+#### 插入：增加到指定位置上
+
+```bash
+sudo iptables -I INPUT 1 -i lo -j ACCEPT
+```
+
+- -I：insert，插入规则
+- INPUT：插入哪个 chain
+- 1：插入到第一行
+- -i： --in-interface，命名接收数据包的接口
+
+### 删除
+
+#### 删除指定的规则
+
+```bash
+iptables -D INPUT 4
+```
+
+- -D：delete，删除规则
+- INPUT：删除哪个 chain 的规则
+- 4：删除第 4 行的规则
+
+#### 清空所有规则
+
+```bash
+iptables -F INPUT
+```
+
+- F：--flush，冲洗的意思，删除所有规则，Delete all the rules one-by-one.
+- INPUT：删除 INPUT 中的所有规则
+
+### 保存规则
+
+添加完规则，需要保存，否则系统重启，规则就没了。
+
+- 保存
+
+```bash
+service iptables save
+```
+
+会保存到如下位置：
+
+```bash
+/etc/sysconfig/iptables
+```
+
+## 参考资料
+
+- [资料 1](https://ninghao.net/video/3542#info)
+
+- [资料 2](https://www.linode.com/docs/security/firewalls/control-network-traffic-with-iptables/#basic-iptables-rulesets-for-ipv4-and-ipv6)
