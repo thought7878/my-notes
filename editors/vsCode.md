@@ -11,5 +11,5 @@ ctrl+space
 改为
 
 ```
-shift+space
+cmd+space
 ```
