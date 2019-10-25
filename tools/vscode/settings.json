@@ -1,0 +1,63 @@
+{
+  "workbench.colorTheme": "Material Theme",
+  "workbench.activityBar.visible": false,
+  "editor.minimap.enabled": false,
+  "editor.lineHeight": 25,
+  "editor.fontSize": 13,
+  "explorer.confirmDelete": false,
+  "terminal.integrated.lineHeight": 1.8,
+  "atomKeymap.promptV3Features": true,
+  "editor.multiCursorModifier": "ctrlCmd",
+  "files.autoSave": "onFocusChange",
+  "editor.formatOnPaste": true,
+  "prettier.semi": false,
+  "prettier.singleQuote": true,
+  "editor.formatOnSave": true,
+  "emmet.includeLanguages": {
+    "javascript": "javascriptreact",
+    "wxml": "html"
+  },
+  "window.zoomLevel": 1,
+  //markdown
+  "[markdown]": {
+    "editor.wordWrap": "on",
+    "editor.quickSuggestions": true
+  },
+  "workbench.startupEditor": "newUntitledFile",
+  // terminal
+  "terminal.integrated.shell.osx": "zsh",
+  "editor.snippetSuggestions": "inline",
+  "editor.renderWhitespace": "all",
+  "files.associations": {
+    "*.cjson": "jsonc",
+    "*.wxss": "css",
+    "*.wxs": "javascript"
+  },
+  "minapp-vscode.disableAutoConfig": true,
+  "emmet.triggerExpansionOnTab": true,
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "typescript.preferences.importModuleSpecifier": "relative",
+  "javascript.preferences.importModuleSpecifier": "relative",
+  "explorer.confirmDragAndDrop": false,
+  "workbench.iconTheme": "material-icon-theme",
+  "dart.previewFlutterUiGuides": true,
+  "dart.previewFlutterUiGuidesCustomTracking": true,
+  "editor.formatOnType": true,
+  "[json]": {
+    "editor.defaultFormatter": "vscode.json-language-features"
+  },
+  "editor.suggest.snippetsPreventQuickSuggestions": false
+  // ts' decorator's color
+  // "todohighlight.keywordsPattern": "@\\w+\\(.*?\\)+",
+  // "todohighlight.defaultStyle": {
+  //   "color": "#666",
+  //   "backgroundColor": "0",
+  // },
+  // "todohighlight.include": [
+  //   "**/*.js",
+  //   "**/*.ts",
+  //   "**/*.vue",
+  // ],
+}
